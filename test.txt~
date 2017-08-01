@@ -2,3 +2,8 @@
 a new change
 this is a change form vince
 a new change made by jason
+<<<<<<< HEAD
+a mew change
+=======
+This change will conflict
+>>>>>>> 7797db24fc81bf29f3e7003245314a9b154678f1
