@@ -1,5 +1,8 @@
 package com.noteapp.model;
 
+/*
+ * student model
+ */
 public class Student {
 	private int id;
 	private String userName;

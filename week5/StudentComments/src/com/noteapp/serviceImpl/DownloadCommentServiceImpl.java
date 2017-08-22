@@ -9,6 +9,9 @@ public class DownloadCommentServiceImpl implements DownloadCommentService{
 	
 	private List<Comment> commentList = new ArrayList<Comment>();
 	
+	/*
+	 * initialize the data into comment objects
+	 */
 	public DownloadCommentServiceImpl(){
 	
 		Comment williamComment = new Comment();
@@ -47,17 +50,9 @@ public class DownloadCommentServiceImpl implements DownloadCommentService{
 	
 	public void deleteCommentList(Comment comment){
 		this.commentList.remove(comment);
-//		for( Comment commentFrom : this.commentList){
-//			   if( commentFrom.getCreateBy().equals(comment.getCreateBy()) 
-//					   && commentFrom.getClassName().equals(comment.getClassName()) 
-//					   && commentFrom.getScore().equals(comment.getScore()))
-//			   {  
-//				   
-//			   }
-//				   
-//			}
+
 	}
-	
+
 	public void createNewComment(Comment comment){
 		this.commentList.add(comment);
 	}
