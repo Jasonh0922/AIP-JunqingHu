@@ -1,28 +1,26 @@
 
-
-
-<div class="container-wrapper" style="padding-top:100px; padding-bottom:50px">
-	<div class="container">
-		<div class="page-header">
-			<h1>Comments For Classes</h1>
-			<p class="lead" align="right"><button class="btn btn-default" ng-click="createComment()">Create New Comment</button></p>
-		</div>
-		<table class="table table-striped table-hover">
-			<thead>
-				<tr class="bg-success">
-					<th>Class</th>
-					<th>Student Name</th>
-					<th>Score</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tr class="bg-success" ng-repeat="comment in commentList">
-				<td>{{comment.className}}</td>
-				<td>{{comment.createBy}}</td>
-				<td><span class="label label-primary">{{comment.score}}</span></td>
-				<td><button class="btn btn-default" ng-click="deleteComment($index)" 
-				ng-show="'{{comment.createBy}}' == '{{currentUser.username}}'">Delete</button></td>
-			</tr>
-		</table>
+<div class="modal-content" >
+	<div class="modal-header">
+		<h3 class="modal-title">Create New Note</h3>
+	</div>
+	<div class="modal-body">
+		<form name="createNoteForm" class="form-signin" novalidate>
+			<div class="form-group">
+				<label for="title">Class Name</label> 
+				<input type="text" id="className"
+					name="className" class="form-control" ng-model="className" required />
+			</div>
+			<div class="form-group">
+				<label for="labels">Score</label> 
+				<select multiple class="form-control" id="score" ng-model="score" required>
+					<option ng-repeat="score in scoreList">{{score}}</option>
+			    </select>
+			</div>
+			<div class="modal-footer" style="padding: 5px;">
+				<button class="btn btn-primary" type="submit"
+					style="height: 30px; padding: 4px 12px;" ng-click="createCommentSubmit()"
+					ng-disabled="createNoteForm.$invalid">Create</button>
+			</div>
+		</form>
 	</div>
 </div>
