@@ -85,3 +85,16 @@
    85  history
    86  vim github.txt
    87  history >> github.txt
+
+Plan projects with ease.
+Milestones, tasklists, and tasks help you organize complex projects into easily manageable units. Get more refined control with subtasks, recurring tasks, and dependencies.
+Get in-depth insights with charts and reports.
+Gantt charts provide a detailed visual on the progress of your tasks in comparison to what was planned. The resource allocation chart lets you know who is free, who is engaged, and who is overloaded.
+Collaborate seamlessly.
+Employees, clients, vendors, or consultants, from near or far can work together with our collaboration tools.
+Keep track of time.
+Everyone working on a project can easily log their billable and non-billable hours using timesheets. The built-in integration with Zoho Invoice automatically generates invoices from timesheets.
+Track and fix issues fast.
+Log issues and track them as they get fixed and tested. Define custom workflows and business rules. Track code changes made in GitHub and Bitbucket.
+Manage your documents.
+Make sure your team always has access to the latest version of all project documents. Work together on documents, presentations, and spreadsheets using our online document tools.
