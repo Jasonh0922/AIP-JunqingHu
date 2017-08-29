@@ -1,0 +1,87 @@
+    1  https://l.facebook.com/l.php?u=https%3A%2F%2Fbitbucket.org%2Fhorijon%2Fmovierecommend.git&h=ATNkCqESggAuYe1cjUxFxh6RiaOPNi4tu0ISIyXNrs8BDNrUMsEwPc9G2rxNiWYjdpgaYC0TQwaijtXITeLnjhQxTpaAxvCt0dHszfAOp8qZlGG2rxqO-Bw2wfbLPiel1nUI-rcGv0iNULg
+    2  https://bitbucket.org/horijon/movierecommend.git
+    3  exit
+    4  https://bitbucket.org/horijon/movierecommend.git
+    5  https://bitbucket.org/horijon/movierecommend.git
+    6  git clone https://bitbucket.org/horijon/movierecommend.git
+    7  git clone https://bitbucket.org/horijon/movierecommend.git
+    8  exit
+    9  git clone https://bitbucket.org/horijon/movierecommend.git
+   10  exit
+   11  git clone https://shankarpoudel@bitbucket.org/spring3java/movierecommend.git
+   12  git clone https://shankarpoudel@bitbucket.org/spring3javaboy/movie.git
+   13  exit
+   14  git clone https://shankarpoudel@bitbucket.org/spring3javaboy/movie.git
+   15  cd movie
+   16  echo "# My project's README" >> README.md
+   17  git add README.md
+   18  git commit -m "Initial commit"
+   19  git push -u origin master
+   20  git push origin master
+   21  git push -u origin master
+   22  git clone https://shankarpoudel@bitbucket.org/spring3javaboy/movie.git
+   23  quit
+   24  exit
+   25  git clone https://shankarpoudel@bitbucket.org/spring3javaboy/movie.git
+   26  exit
+   27  mkdir repo
+   28  cd repo
+   29  git add .
+   30  git remote add repo.git
+   31  git clone https://shankarpoudel@bitbucket.org/spring3javaboy/movie.git
+   32  exit
+   33  git init
+   34  git add .
+   35  git comit -m "First Commit"
+   36  git comit -m "First Comit"
+   37  git -version
+   38  git --version
+   39  which/git
+   40  which git
+   41  git config user.name
+   42  git init
+   43  ls -la
+   44  ls -la .git
+   45  git add .
+   46  git commit -m "Initial commit"
+   47  git config --global user.email "shankar.poudel93@gmail.com"
+   48  git config --global user.name "shankar poudel"
+   49  git commit -m "Initial commit"
+   50  git init
+   51  ls -la
+   52  git add .
+   53  git -m commit "Initial commit"
+   54  git commit -m "Initial Commit"
+   55  git log
+   56  rm -r .git
+   57  rm -rf .git*
+   58  ls -lah
+   59  git remote show origin
+   60  strace git config --get remote.origin.url
+   61  git remote show origin
+   62  git config --get remote.origin.url
+   63  git remote show origin
+   64  git remote -v
+   65  git ls-remote --get-url [REMOTE]
+   66  git remote -v
+   67  git remote show origin
+   68  git ls-remote --get-url 
+   69  git remote
+   70  git remote -v
+   71  git clone https://github.com/poudelshankar/AIP-JunqingHu.git
+   72  cd AIP-JunqingHu
+   73  git clone https://github.com/Jasonh0922/AIP-JunqingHu.git
+   74  git clone https://poudelshankar@github.com/Jasonh0922/AIP-JunqingHu.git
+   75  cd ..
+   76  git clone https://poudelshankar@github.com/Jasonh0922/AIP-JunqingHu.git
+   77  cd AIP-JunqingHu
+   78  ls
+   79  git add *
+   80  git config user.name "poudelshankar"
+   81  git config user.email "shankar.poudel1992@gmail.com"
+   82  git add *
+   83  git commit -m "I put the view folder and spring service path"
+   84  git push origin master
+   85  history
+   86  vim github.txt
+   87  history >> github.txt

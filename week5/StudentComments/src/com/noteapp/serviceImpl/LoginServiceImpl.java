@@ -7,9 +7,15 @@ import com.noteapp.service.LoginService;
 import com.noteapp.model.Student;
 
 public class LoginServiceImpl implements LoginService{
-	
+	/*
+	 * implement loginService class function
+	 * listing user data
+	 */
 	private List<Student> userData = new ArrayList<Student>();
 	
+	/*
+	 * Initializing username  and password
+	 */
 	public LoginServiceImpl(){
 		Student william = new Student();
 		william.setId(1);

@@ -13,9 +13,11 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre(1)"/>
 	<classpathentry kind="lib" path="D:/360dowload/donload/javax.jar/javax.jar"/>
 	<classpathentry kind="lib" path="D:/360dowload/donload/servlet-api.jar/servlet-api.jar"/>
+	<classpathentry kind="lib" path="E:/javax.jar/javax.jar"/>
+	<classpathentry kind="lib" path="E:/servlet-api.jar/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

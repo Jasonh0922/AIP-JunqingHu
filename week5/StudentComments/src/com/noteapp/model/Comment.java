@@ -1,5 +1,7 @@
 package com.noteapp.model;
-
+/*
+ * comment model
+ */
 public class Comment {
 	private String className;
 	private String score;

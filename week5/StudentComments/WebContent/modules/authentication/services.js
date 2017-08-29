@@ -51,6 +51,7 @@ angular.module('Authentication')
         return service;
     }])
  
+    // for password validation
 .factory('Base64', function () {
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     return {
