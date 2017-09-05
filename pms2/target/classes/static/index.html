@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="../js/sha1.js"></script>
+	<script type="text/javascript" src="../js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<title>User Login</title>
+</head>
+
+<body class="container">
+	<div id="div0">
+		<h2>Welcome Login</h2>
+		<h4><a href="./studentAdd.html">new user?</a></h4>
+		<div class="form">
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" class="form-control" id="email" placeholder="Email" required>
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password</label>
+				<input type="password" class="form-control" id="pwd" placeholder="Password" required>
+			</div>
+			<button class="btn btn-default" onclick="login()">Login</button>&nbsp;&nbsp;
+			<!-- <h4><a href="#">forget password?</a></h4> -->
+		</div>
+	</div>
+
+	<script>
+		function login() {
+			var loginInfo = {};
+			loginInfo.email = document.getElementById("email").value;
+			loginInfo.pwd = document.getElementById("pwd").value;
+			loginCheck(loginInfo);
+		}
+	</script>
+</body>
+
+</html>
