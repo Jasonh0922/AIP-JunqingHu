@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="../js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<title>Student Info Management</title>
+</head>
+
+<body onload="getAllStudents()" class="container">
+	<div id="div0">
+		<h3>Welcome to Student Info Management Page</h3>
+		<span style="float:right"><button class="btn btn-primary" onclick="logout()">Logout</button></span>
+		
+	</div>
+	<br><br>
+	<div id="div0">
+		<a href='./studentAdd.html'><button class="btn btn-info">Add Student</button></a>
+		<span style="float:right">
+			<input type="text" placeholder="Search by first name" id="key">
+			<button class="btn btn-default" onclick="search()">Search</button>
+		</span>
+	</div>
+	<br>
+
+	<div id="div1"></div>
+
+	<script>
+		var students = {};
+		function getAllStudents() {
+			var url = baseURL + '/users/';
+			xhttp.open(method, url, true);
+			xhttp.send();
+
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					if (this.responseText && this.responseText.length > 0) {
+						students = JSON.parse(this.responseText);
+						updateTable(students);
+					}
+				}
+			}
+
+		}
+
+		function updateTable(students) {
+
+			var tr1 = "<tr>";
+			var tr2 = "</tr>";
+			var td1 = "<td>";
+			var td2 = "</td>";
+
+			var body = "<table id='studentsTable' class='table table-striped'>" +
+				"<tr>" +
+				"<th>ID</th>" +
+				"<th>Name</th>" +
+				"<th>Email</th>" +
+				"<th>Mobile</th>" +
+				"<th>Actions</th>" +
+				"</tr>";
+			for (var i = 0; i < students.length; i++) {
+				var tr = tr1 +
+					td1 + students[i]['id'] + td2 +
+					td1 + students[i]['name'] + td2 +
+					td1 + students[i]['email'] + td2 +
+					td1 + students[i]['mobile'] + td2 +
+					td1 + "<a><button class='btn btn-danger' onclick='deleteStudent(" + students[i]['id'] + ")'>" +
+					"Delete</button></a>" + td2 +
+					tr2;
+				body += tr;
+			}
+			body += "</table>";
+			var div1 = document.getElementById("div1");
+			div1.innerHTML = body;
+		}
+
+		function search(){
+			var search = {};
+			var key = document.getElementById("key").value;
+
+			var url = baseURL + '/users/search/' + key;
+			xhttp.open(method, url, true);
+			xhttp.send();
+
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					if (this.responseText && this.responseText.length > 0) {
+						students = JSON.parse(this.responseText);
+						updateTable(students);
+					}
+				}
+			}
+
+		}
+	</script>
+</body>
+
+</html>
