@@ -1,13 +1,11 @@
 package com.bit.pms.repository;
 
+import java.util.List;
 
-import com.bit.pms.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
+import com.bit.pms.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByEmailAndPwd(String email, String pwd);
@@ -15,4 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findByEmail(String email);
 
 	List<User> findByFirstNameContaining(String key);
+
+	@Query("select u from User u join u.roles r where r != 'ROLE_ADMIN'")
+	List<User> findAllUser();
 }

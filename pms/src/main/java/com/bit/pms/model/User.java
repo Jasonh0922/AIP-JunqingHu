@@ -2,12 +2,18 @@ package com.bit.pms.model;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
@@ -25,7 +31,7 @@ public class User implements Serializable {
 
 	@Email
 	@NotNull
-	@Column(name="email")
+	@Column(name = "email")
 	private String email;
 
 	@Column(name = "mobile")
@@ -34,7 +40,8 @@ public class User implements Serializable {
 	@Column(name = "pwd", length = 1000)
 	private String pwd;
 
-	private int role;
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
 
 	private String status;
 
@@ -107,19 +114,19 @@ public class User implements Serializable {
 		return firstName + " " + lastName;
 	}
 
-	public int getRole() {
-		return role;
-	}
-
-	public void setRole(int role) {
-		this.role = role;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 }

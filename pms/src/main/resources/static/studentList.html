@@ -30,8 +30,11 @@
 	<script>
 		var students = {};
 		function getAllStudents() {
-			var url = baseURL + '/users/';
+			var url = baseURL + '/api/users/';
+		
 			xhttp.open(method, url, true);
+			xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+			xhttp.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
 			xhttp.send();
 
 			xhttp.onreadystatechange = function () {
@@ -80,8 +83,9 @@
 			var search = {};
 			var key = document.getElementById("key").value;
 
-			var url = baseURL + '/users/search/' + key;
+			var url = baseURL + '/api/users/search/' + key;
 			xhttp.open(method, url, true);
+			xhttp.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
 			xhttp.send();
 
 			xhttp.onreadystatechange = function () {

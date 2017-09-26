@@ -1,13 +1,15 @@
 /**
  * This is used for Front End Basic Tutorial Demo
  */
-var baseURL = "http://localhost:8888/api";
+var baseURL = "http://localhost:8888";
 var method = "GET";
 var xhttp = new XMLHttpRequest();
 var sessionUser;
+var fail = 'FAIL';
+var success = 'SUCCESS';
 
 function getStudents(students) {
-    var url = baseURL + '/users/';
+    var url = baseURL + '/api/users/';
     xhttp.open(method, url, true);
     xhttp.send();
 
@@ -19,7 +21,7 @@ function getStudents(students) {
 }
 
 function getStudent(id) {
-    var url = baseURL + '/users/' + id;
+    var url = baseURL + '/api/users/' + id;
     xhttp.open(method, url, true);
     xhttp.send();
 
@@ -36,44 +38,40 @@ function addStudent(student) {
     shaObj.update(student.pwd);
     var hash = shaObj.getHash("HEX");
 
-    student.pwd = Base64Encode(student.email + ':' + hash);
-    console.log(student);
+    student.pwd = btoa(student.email + ':' + hash);
 
     var method = "POST";
-    var url = baseURL + '/users/';
+    var url = baseURL + '/auth/register';
     xhttp.open(method, url, true);
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhttp.send(JSON.stringify(student));
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var responseObj = JSON.parse(this.responseText);
-            if(responseObj.status === 'success'){
-                alert("Create success!");
-                window.history.back();
-            }else{
-                alert('The Email already used! Please use another one.');
-            }
-            
+        	console.log(this.responseText);
+        	var response = JSON.parse(this.responseText);
+        if(response.status == fail){
+            alert('The Email already used! Please use another one.');
+        }else{
+           alert("User add successfully!");
+           window.history.back();
+        }
         }
     }
 }
 
 function updateStudent(student) {
     var method = "PUT";
-    var url = baseURL + '/users/';
+    var url = baseURL + '/api/users/';
     xhttp.open(method, url, true);
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhttp.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
     xhttp.send(JSON.stringify(student));
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            if(this.responseText && (JSON.parse(this.responseText)).role>0){
                 sessionStorage.setItem('sessionUser',this.responseText);
                 alert('Profile updated successfully!');
-            }else{
-                location.replace('./studentList.html');
-            }
         }
     }
 }
@@ -82,16 +80,16 @@ function deleteStudent(id) {
     var conf = confirm("Are you sure to delete student: " + id);
     if (conf) {
         var method = "DELETE";
-        var url = baseURL + '/users/' + id;
+        var url = baseURL + '/api/users/' + id;
         console.log(url);
         xhttp.open(method, url, true);
         xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhttp.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         xhttp.send();
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 location.reload();
-                console.log(JSON.parse(this.responseText));
             }
         }
 
@@ -104,9 +102,9 @@ function loginCheck(loginInfo) {
     shaObj.update(loginInfo.pwd);
     var hash = shaObj.getHash("HEX");
 
-    loginInfo.pwd = Base64Encode(loginInfo.email + ':' + hash);
+    loginInfo.pwd = btoa(loginInfo.email + ':' + hash);
 
-    var url = baseURL + '/users/login';
+    var url = baseURL + '/auth/login';
     xhttp.open('POST', url, true);
     xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhttp.send(JSON.stringify(loginInfo));
@@ -114,13 +112,22 @@ function loginCheck(loginInfo) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) {
-                sessionStorage.setItem('sessionUser',this.responseText);
-                if((JSON.parse(this.responseText)).role>0){
-                    location.replace('./studentHome.html');
-                }else{
-                    location.replace('./studentList.html');
-                }
+            	var response = JSON.parse(this.responseText);
+            	localStorage.setItem('token', response.token);
                 
+                var payload = JSON.parse(atob(response.token.split('.')[1]));
+                var sessionUser = {};
+                sessionUser.firstName = payload.fir;
+                sessionUser.lastName = payload.las;
+                sessionUser.email = payload.sub;
+                sessionUser.mobile = payload.mob;
+                sessionStorage.setItem('sessionUser',JSON.stringify(sessionUser));
+                
+                if(payload.rol.indexOf('ROLE_ADMIN') > -1){
+                	location.replace('./studentList.html');
+                }else{
+                	location.replace('./studentHome.html');
+                }
             } else {
                 alert('Email or Password not correct!');
             }
@@ -133,54 +140,16 @@ function logout(){
 		location.replace('./index.html');
     }
     
-function Base64Encode(input) {
-    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-    var output = "";
-    var chr1, chr2, chr3 = "";
-    var enc1, enc2, enc3, enc4 = "";
-    var i = 0;
-
-    do {
-        chr1 = input.charCodeAt(i++);
-        chr2 = input.charCodeAt(i++);
-        chr3 = input.charCodeAt(i++);
-
-        enc1 = chr1 >> 2;
-        enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-        enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-        enc4 = chr3 & 63;
-
-        if (isNaN(chr2)) {
-            enc3 = enc4 = 64;
-        } else if (isNaN(chr3)) {
-            enc4 = 64;
-        }
-
-        output = output +
-            keyStr.charAt(enc1) +
-            keyStr.charAt(enc2) +
-            keyStr.charAt(enc3) +
-            keyStr.charAt(enc4);
-        chr1 = chr2 = chr3 = "";
-        enc1 = enc2 = enc3 = enc4 = "";
-    } while (i < input.length);
-
-    return output;
-}
-
-
-
 
 /*
- A JavaScript implementation of the SHA family of hashes, as
- defined in FIPS PUB 180-2 as well as the corresponding HMAC implementation
- as defined in FIPS PUB 198a
-
- Copyright Brian Turek 2008-2015
- Distributed under the BSD License
- See http://caligatio.github.com/jsSHA/ for more information
-
- Several functions taken from Paul Johnston
+ * A JavaScript implementation of the SHA family of hashes, as defined in FIPS
+ * PUB 180-2 as well as the corresponding HMAC implementation as defined in FIPS
+ * PUB 198a
+ * 
+ * Copyright Brian Turek 2008-2015 Distributed under the BSD License See
+ * http://caligatio.github.com/jsSHA/ for more information
+ * 
+ * Several functions taken from Paul Johnston
  */
 'use strict';
 (function (E) {
