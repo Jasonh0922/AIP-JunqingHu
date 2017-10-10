@@ -1,6 +1,3 @@
-/**
- * This is used for Front End Basic Tutorial Demo
- */
 var baseURL = "http://localhost:8888";
 var method = "GET";
 var xhttp = new XMLHttpRequest();
@@ -54,7 +51,12 @@ function addStudent(student) {
             alert('The Email already used! Please use another one.');
         }else{
            alert("User add successfully!");
-           window.history.back();
+           if(isAdmin()){
+        	   location.replace('./studentList.html');
+           }else{
+        	   location.replace('./index.html');
+           }
+           
         }
         }
     }
@@ -92,9 +94,7 @@ function deleteStudent(id) {
                 location.reload();
             }
         }
-
     }
-
 }
 
 function loginCheck(loginInfo) {
@@ -116,17 +116,18 @@ function loginCheck(loginInfo) {
             	localStorage.setItem('token', response.token);
                 
                 var payload = JSON.parse(atob(response.token.split('.')[1]));
-                var sessionUser = {};
+                const sessionUser = {};
                 sessionUser.firstName = payload.fir;
                 sessionUser.lastName = payload.las;
                 sessionUser.email = payload.sub;
                 sessionUser.mobile = payload.mob;
+                sessionUser.role = payload.rol;
                 sessionStorage.setItem('sessionUser',JSON.stringify(sessionUser));
-                
-                if(payload.rol.indexOf('ROLE_ADMIN') > -1){
-                	location.replace('./studentList.html');
-                }else{
+                console.log(sessionUser.role);
+                if(payload.rol.indexOf('ROLE_ADMIN') < 0){
                 	location.replace('./studentHome.html');
+                }else{
+                	location.replace('./studentList.html');
                 }
             } else {
                 alert('Email or Password not correct!');
@@ -140,6 +141,16 @@ function logout(){
 		location.replace('./index.html');
     }
     
+function isAdmin(){
+	var user = sessionStorage.getItem('sessionUser');
+	if(user != 'null'){
+		user = JSON.parse(user);
+		if(user.role!=null && user.role.indexOf('ROLE_ADMIN') > -1){
+			return true;
+		}
+	}
+	return false;
+}
 
 /*
  * A JavaScript implementation of the SHA family of hashes, as defined in FIPS

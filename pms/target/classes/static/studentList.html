@@ -30,6 +30,7 @@
 	<script>
 		var students = {};
 		function getAllStudents() {
+			isAdmin();
 			var url = baseURL + '/api/users/';
 		
 			xhttp.open(method, url, true);

@@ -23,41 +23,76 @@
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" class="form-control" id="email" placeholder="Email">
+				<input type="email" class="form-control" id="email" placeholder="Email" required>
 			</div>
 			<div class="form-group">
 				<label for="pwd">Password</label>
-				<input type="password" class="form-control" id="pwd" placeholder="Password">
+				<input type="password" class="form-control" id="pwd1" placeholder="Password" minlength="4" maxlength="8" required>
 			</div>
 			<div class="form-group">
-				<label for="pwd2">Retry Password</label>
-				<input type="password" class="form-control" id="pwd2" placeholder="Password confirm">
+				<label for="pwd">Retry Password</label>
+				<input type="password" class="form-control" id="pwd2" placeholder="Password" minlength="4" maxlength="8" required>
 			</div>
 			<div class="form-group">
 				<label for="mobile">Mobile</label>
-				<input type="phone" class="form-control" id="mobile" placeholder="Mobile">
+				<input type="phone" class="form-control" id="mobile" placeholder="Mobile" pattern="^04[0-9]{8}$" required>
 			</div>
 
-			<button class="btn btn-default" onclick="addStu()">Submit</button>
+			<button class="btn btn-default" onclick="addStu()" >Submit</button>
 		</div>
 	</div>
 	<script>
 		function addStu() {
-			console.log("start adding student...");
+			console.log('validating inputs...');
 			var stu = {};
-			stu.firstName = document.getElementById("firstName").value;
-			stu.lastName = document.getElementById("lastName").value;
-			stu.email = document.getElementById("email").value;
-			stu.mobile = document.getElementById("mobile").value;
-			stu.pwd = document.getElementById("pwd").value;
-			stu.pwd2 = document.getElementById("pwd2").value;
-			if(stu.pwd !== stu.pwd2){
-				alert('Passwords not the same, please input again!');
+			if(document.getElementById("firstName").validity.valueMissing){
+				alert('firstName is required');
 				return false;
+			}else{
+				stu.firstName = document.getElementById("firstName").value;
 			}
-
-			addStudent(stu);
 			
+			if(document.getElementById("lastName").validity.valueMissing){
+				alert('lastName is required');
+				return false;
+			}else{
+				stu.lastName = document.getElementById("lastName").value;
+			}
+			
+			if(document.getElementById("email").validity.valueMissing){
+				alert('email is required');
+				return false;
+			}else if(document.getElementById("email").validity.typeMismatch){
+				alert('email is not valid');
+				return false;
+			}else{
+				stu.email = document.getElementById("email").value;
+			}
+			
+			if(document.getElementById("mobile").validity.valueMissing){
+				alert('mobile is required');
+				return false;
+			}else if(document.getElementById("mobile").validity.patternMismatch){
+				alert('mobile is not valid');
+				return false;
+			}else{
+				stu.mobile = document.getElementById("mobile").value;
+			}
+			
+			if(document.getElementById("pwd1").validity.valueMissing || document.getElementById("pwd2").validity.valueMissing){
+				alert('password is required');
+				return false;
+			}else if(document.getElementById("pwd1").value != document.getElementById("pwd2").value){
+				alert('password should be the same');
+				return false;
+			}else if (!document.getElementById("pwd1").validity.valid || !document.getElementById("pwd2").validity.valid) {
+				alert('input password is not valid, lenght is 4-8');
+				return false;
+			}else{
+				stu.pwd = document.getElementById("pwd1").value;
+			}
+			addStudent(stu);
+
 		}
 	</script>
 </body>

@@ -38,7 +38,8 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 				// allow static resources to be accessed
 				.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/", "/*.html", "/*.ico", "/**/*.html", "/**/*.css", "/**/*.js")
-				.permitAll().antMatchers("/auth/**").permitAll().anyRequest().authenticated();
+				.permitAll().antMatchers("/auth/**").permitAll().antMatchers("/api/email/**").permitAll()
+				.antMatchers("/api/sys/**").permitAll().anyRequest().authenticated();
 		http.addFilterBefore(jwtAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
 	}
