@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="../js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<title></title>
+</head>
+
+<body class="container">
+	<div id="div0">
+		<h2>Reset Password</h2>
+		
+		<div class="form">
+			<div class="form-group">
+				<label for="pwd1">New Password</label>
+				<input type="password" class="form-control" id="pwd1" placeholder="Password" minlength="4" maxlength="8" required > 
+			</div>
+			<div class="form-group">
+				<label for="pwd2">Retry Password</label>
+				<input type="password" class="form-control" id="pwd2" placeholder="Retry Password" minlength="4" maxlength="8" required> 
+			</div>
+			<span style="color:red;display:none" id="checkRequired">Password is required</span>
+			<span style="color:red;display:none" id="checkLength">Passwords length should be 4-8</span>
+			<span style="color:red;display:none" id="checkSame">Passwords should be the same</span>
+			<button class="btn btn-default" onclick="reset()">Reset</button>
+		</div>
+	</div>
+
+	<script>
+		function reset() {
+			
+			if(document.getElementById("pwd1").validity.valueMissing || document.getElementById("pwd2").validity.valueMissing){
+				document.getElementById("checkRequired").style.display = "block";
+			}else{
+				document.getElementById("checkRequired").style.display = "none";
+			}
+			
+			if(document.getElementById("pwd1").value != document.getElementById("pwd2").value){
+				document.getElementById("checkSame").style.display = "block";
+			}else{
+				document.getElementById("checkSame").style.display = "none";
+			}
+			
+			if (!document.getElementById("pwd1").validity.valid || !document.getElementById("pwd2").validity.valid) {
+				document.getElementById("checkLength").style.display = "block";
+			}else{
+				document.getElementById("checkLength").style.display = "none";
+			}
+			
+			 var shaObj = new jsSHA("SHA-1", "TEXT");
+   			 shaObj.update(document.getElementById("pwd1").value);
+    		 var hash = shaObj.getHash("HEX");
+
+			var flag = location.search.split('=')[1];
+			
+			var url = 'api/email/' + hash +'/f/'+flag;
+				xhttp.open(method, url, true);
+				xhttp.send();
+
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var response = JSON.parse(this.responseText);
+						if (response.status == fail) {
+							alert('Password reset fail');
+						} else {
+							alert('Password reset success! Please login.');
+							location.replace('./index.html');
+						}
+					}
+				};
+		
+		}
+	</script>
+</body>
+
+</html>
