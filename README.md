@@ -20,23 +20,32 @@ For admin, the admin name is configured in property file and also persist in DB.
 After admin login will direct to student list page 
  
 On student list page, the admin can delete a user or add new user
+
 3.4 logout
 By clicking the Logout button on the top-right, will direct to the index page. 
+
 3.5 form validation
 For the student add page, we add some basic validation as below:
+
 Input	Validation rule
+
 First name	Required
+
 Last name	Required
+
 Email	Required 
+
 Match Email format
 Password	Required 
 minlength is 4
 maxlength is 8
 should be the same for two input passwords
+
 Mobile 	Required
 Regular  expression to match Australia mobile format
 
 If any of the above field is not valid, user will get alert.
+
 3.6 Email based password reset
 If a registered user forget the password, can click the link to reset:
 First step need to input the Email:
@@ -48,33 +57,46 @@ Open your Email box and will see some message like below:
 Click the link in the Email will open the password reset page as below:
  
 Input the new password and press “Reset” button, if success will get a notice and redirect to login page. Then user can use the new password to login.
+
 3.7 integration with public web service
 use goggle map api to show our location on goggle map
+
 
 3.8 expose a useful RESTful API
 The application exposes a RESTful API to get the current system date and time:
 Endpoint: /api/sys/datetime
  
 
+
 3.9 deployment to cloud
 Deployed in AWS (EC2 server and MySQL DB)
+
 4.	Non-functional features
+
 4.1 AJAX
 Using XMLHttpRequest object to communicate with backend. The code is in app.js and some html files.
+
 4.2 concurrent processing
 The application can handle multiple user login and using the application.
+
 4.3 modern framework
 Using Spring technology including Spring Core, Spring MVC, Spring Data JPA, Spring IO, Spring Security.
+
 4.4 Database
 Using MySQL to persist data.
+
 4.5 security
 Using JWT(JSON Web Tokens which are an open, industry standard RFC 7519 method for representing claims securely between two parties.) and Spring security to enable both the frontend security and backend web security for APIs.
+
 4.6 must not store unencrypted password
 Password is encrypted in both frontend (SHA), and backend with BCrypt.
+
 4.7 authentication framework
 Using JWT and Spring Login web security.
+
 4.8 documents and comments
 Detailed documents with text and screenshots.
+
 4.9 source control and code tracking
 Deployed in GitHub for source control and tracking purpose.
 
