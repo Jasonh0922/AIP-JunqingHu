@@ -4,6 +4,16 @@ The application is used to manage students’ information. Each anonymous user c
 For registered user, after sing in will open his profile page in which he can update his information. For user has an “ADMIN” role can open the students list page where the admin can perform more options like remove a student.
 The backend of the application using SpringBoot(Spring MVC, Spring Data JPA, Spring Security) and frontend using standard HTML and Java script in which using Ajax (XMLHttpRequest) to communicate with the backend. Data exchange format is JSON.
 
+2.1 front end
+Front end is based on HTML and JavaScript, no third party framework is used.
+
+2.2 backend
+Backend is Spring boot Maven project running with JDK 1.8, including Spring framework, Spring MVC and Spring Data JPA. If you want to run the application, improt pms file into any IDE  like eclipse and intelij and import maven project, after that, run the sms application in java/com/bit//pms/ folder to start spring boot, then open localhost:8888 to start the web page
+ 
+
+1) configuration file
+application.properties is the main configuration file of Spring boot project, currently we create a DB called “px”, change this name if you create a different one. and also set u own database password in datasource.bitapp.password
+
 3.	Functional Features
 The application meets the functional features required in the assessment detailed as below.
 3.1 Sing up
