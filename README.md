@@ -16,11 +16,13 @@ application.properties is the main configuration file of Spring boot project, cu
 
 3.	Functional Features
 The application meets the functional features required in the assessment detailed as below.
+
 3.1 Sing up
  
 Click “new user?” on the index page to open the register page 
  
 User should input all the fields because they are required, and also each field has validation.
+
 3.2 login
  
 By input the email and password, the user can login. If it is a normal user and successfully login will direct to the profile page in which can update some of his information, if login as admin will direct to student list page.
