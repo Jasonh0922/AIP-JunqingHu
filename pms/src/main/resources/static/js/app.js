@@ -52,9 +52,9 @@ function addStudent(student) {
         }else{
            alert("User add successfully!");
            if(isAdmin()){
-        	   location.replace('./studentList.html');
+        	   location.replace('../studentList.html');
            }else{
-        	   location.replace('./index.html');
+        	   location.replace('../index.html');
            }
            
         }
