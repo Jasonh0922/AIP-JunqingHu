@@ -112,25 +112,3 @@ Detailed documents with text and screenshots.
 4.9 source control and code tracking
 Deployed in GitHub for source control and tracking purpose.
 
-5 principle
-
-
-Rule 1: Create Descriptive Names
-
-Rule 2: Comment and Document
-
-Rule 3: Don't Repeat Yourself
-
-Rule 4: Split Your Code into Short, Focused Units
-
-Rule 5: Use Framework APIs and Third-Party Libraries
-
-Rule 6: Be Consistent
-
-Rule 7: Use Efficient Data Structures
-
-Rule 8：divide class into meaningful package
-
-Rule 9 : eahc service has an inferface
-
-Rule 10: store consants into individual rules
