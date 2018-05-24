@@ -1,4 +1,4 @@
-Student Info Management
+Student Info Management (all coding file are under pms folder)
 1.	Summary
 The application is used to manage students’ information. Each anonymous user can access the login and sing up page.
 For registered user, after sing in will open his profile page in which he can update his information. For user has an “ADMIN” role can open the students list page where the admin can perform more options like remove a student.
